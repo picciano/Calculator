@@ -12,11 +12,6 @@ struct CalculatorApp: App {
     var body: some Scene {
         WindowGroup {
             CalculatorView().environmentObject(CalculatorEnvironment())
-                .onAppear(perform: startApp)
         }
-    }
-
-    func startApp() {
-        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
     }
 }

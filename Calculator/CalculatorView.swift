@@ -16,16 +16,15 @@ struct CalculatorView: View {
     @EnvironmentObject
     var env: CalculatorEnvironment
 
-    @Environment(\.horizontalSizeClass)
-    var horizontalSizeClass: UserInterfaceSizeClass?
-
     var body: some View {
 
         ZStack(alignment: .bottom) {
 
             Color.black.ignoresSafeArea(.all)
 
-            VStack(alignment: horizontalSizeClass == .regular ? .trailing : .center, spacing: CalculatorView.Properties.spacing) {
+            let metrics = buttonMetrics
+
+            VStack(alignment: buttonMetrics.isLandscape ? .trailing : .center, spacing: CalculatorView.Properties.spacing) {
 
                 HStack {
                     Spacer()
@@ -33,8 +32,6 @@ struct CalculatorView: View {
                         .foregroundColor(.white)
                         .font(.system(size: 64))
                 }
-
-                let metrics = buttonMetrics
 
                 ForEach(metrics.buttons, id: \.self) { row in
                     HStack(spacing: CalculatorView.Properties.spacing) {

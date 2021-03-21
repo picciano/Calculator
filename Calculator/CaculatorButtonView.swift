@@ -20,7 +20,7 @@ struct CalculatorButtonView: View {
             env.process(button)
         }, label: {
             Text(button.title)
-                .font(.system(size: button.fontSize))
+                .font(.system(size: fontSize))
                 .frame(width: width,
                        height: height)
                 .foregroundColor(button.foregroundColor)
@@ -44,5 +44,14 @@ struct CalculatorButtonView: View {
 
     var cornerRadius: CGFloat {
         return buttonRadius / 2
+    }
+
+    var fontSize: CGFloat {
+        switch button {
+        case .add, .subtract, .divide, .equals:
+            return buttonRadius / 2
+        default:
+            return buttonRadius / 3
+        }
     }
 }

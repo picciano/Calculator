@@ -12,17 +12,6 @@ enum CalculatorButton {
     case add, subtract, multiply, divide, equals
     case allClear, clear, plusMinus, percent
     
-    var fontSize: CGFloat {
-        switch self {
-        case .add, .subtract, .divide, .equals:
-            return 48
-        case .multiply:
-            return 36
-        default:
-            return 40
-        }
-    }
-    
     var title: String {
         switch self {
         case .zero: return "0"
