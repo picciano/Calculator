@@ -20,7 +20,7 @@ struct CalculatorView: View {
 
         ZStack(alignment: .bottom) {
 
-            Color.black.ignoresSafeArea(.all)
+            Color(UIColor.tertiarySystemBackground).ignoresSafeArea(.all)
 
             let metrics = buttonMetrics
 
@@ -29,7 +29,7 @@ struct CalculatorView: View {
                 HStack {
                     Spacer()
                     Text(env.displayText)
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(UIColor.label))
                         .font(.system(size: 64))
                 }
 

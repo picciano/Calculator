@@ -59,7 +59,7 @@ enum CalculatorButton {
     var backgroundColor: Color {
         switch self {
         case .add, .subtract, .multiply, .divide, .equals:
-            return .orange
+            return .accentColor
         case .allClear, .clear, .plusMinus, .percent:
             return Color(.lightGray)
         default:
