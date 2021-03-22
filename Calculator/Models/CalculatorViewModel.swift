@@ -16,8 +16,8 @@ class CalculatorViewModel: ObservableObject {
     @Published
     var deviceOrientation: UIDeviceOrientation = UIDevice.current.orientation
 
-    var interfaceOrientation: UIInterfaceOrientation {
-        UIWindow.keyWindowInterfaceOrientation ?? .unknown
+    func createConfiguration() -> Configuration {
+        Configuration(with: UIWindow.keyWindowInterfaceOrientation ?? .unknown)
     }
     
     private var currentValue: Double {

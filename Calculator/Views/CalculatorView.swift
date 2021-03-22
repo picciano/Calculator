@@ -14,7 +14,7 @@ struct CalculatorView: View {
     }
 
     @EnvironmentObject
-    var env: CalculatorViewModel
+    var model: CalculatorViewModel
 
     var body: some View {
 
@@ -22,22 +22,24 @@ struct CalculatorView: View {
 
             Color(UIColor.tertiarySystemBackground).ignoresSafeArea(.all)
 
-            let currentMetrics = metrics
+            let config = model.createConfiguration()
 
-            VStack(alignment: env.interfaceOrientation.isLandscape ? .trailing : .center, spacing: CalculatorView.Properties.spacing) {
+            VStack(alignment: config.horizontalAlignment, spacing: CalculatorView.Properties.spacing) {
 
                 HStack {
                     Spacer()
-                    Text(env.displayText)
+                    Text(model.displayText)
                         .foregroundColor(Color(UIColor.label))
-                        .font(.system(size: currentMetrics.displayTextFontSize))
+                        .font(.system(size: config.displayTextFontSize))
                         .multilineTextAlignment(.trailing)
                 }
 
-                ForEach(currentMetrics.buttons, id: \.self) { row in
+                ForEach(config.buttons, id: \.self) { row in
                     HStack(spacing: CalculatorView.Properties.spacing) {
                         ForEach(row, id: \.self) { button in
-                            CalculatorButtonView(button: button, buttonRadius: currentMetrics.buttonRadius)
+                            Button(model.isDefaultDisplay ? button.altTitle : button.title) {
+                                model.process(button)
+                            }.buttonStyle(CalculatorButtonStyle(button: button, buttonRadius: config.buttonRadius))
                         }
                     }
                 }

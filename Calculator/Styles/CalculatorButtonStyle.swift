@@ -1,5 +1,5 @@
 //
-//  CalculatorButtonView.swift
+//  CalculatorButtonStyle.swift
 //  Calculator
 //
 //  Created by Anthony Picciano on 3/19/21.
@@ -7,26 +7,19 @@
 
 import SwiftUI
 
-struct CalculatorButtonView: View {
-
-    @EnvironmentObject
-    var env: CalculatorViewModel
+struct CalculatorButtonStyle: ButtonStyle {
 
     var button: CalculatorButton
     var buttonRadius: CGFloat
 
-    var body: some View {
-        Button(action: {
-            env.process(button)
-        }, label: {
-            Text(env.isDefaultDisplay ? button.altTitle : button.title)
-                .font(.system(size: fontSize))
-                .frame(width: width,
-                       height: height)
-                .foregroundColor(button.foregroundColor)
-                .background(button.backgroundColor)
-                .cornerRadius(cornerRadius)
-        })
+    public func makeBody(configuration: CalculatorButtonStyle.Configuration) -> some View {
+        configuration.label
+            .font(.system(size: fontSize))
+            .frame(width: width,
+                   height: height)
+            .foregroundColor(button.foregroundColor)
+            .background(button.backgroundColor)
+            .cornerRadius(cornerRadius)
     }
 
     var width: CGFloat {

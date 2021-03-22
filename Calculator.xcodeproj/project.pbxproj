@@ -9,20 +9,20 @@
 /* Begin PBXBuildFile section */
 		B42D06CF260576E100EF4F42 /* CalculatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42D06CE260576E100EF4F42 /* CalculatorButton.swift */; };
 		B42D06D2260576FF00EF4F42 /* CalculatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42D06D1260576FF00EF4F42 /* CalculatorViewModel.swift */; };
-		B42D06D62605783700EF4F42 /* CalculatorButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42D06D52605783700EF4F42 /* CalculatorButtonView.swift */; };
+		B42D06D62605783700EF4F42 /* CalculatorButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42D06D52605783700EF4F42 /* CalculatorButtonStyle.swift */; };
 		B4899B7226054057003B7851 /* CalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4899B7126054057003B7851 /* CalculatorApp.swift */; };
 		B4899B7426054057003B7851 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4899B7326054057003B7851 /* CalculatorView.swift */; };
 		B4899B7626054058003B7851 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4899B7526054058003B7851 /* Assets.xcassets */; };
 		B4899B7926054058003B7851 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4899B7826054058003B7851 /* Preview Assets.xcassets */; };
 		B4F597102607AAE4004D67F8 /* UIWindow+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F5970F2607AAE4004D67F8 /* UIWindow+Key.swift */; };
 		B4F597132607AB18004D67F8 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F597122607AB18004D67F8 /* Buttons.swift */; };
-		B4F6579C2606CA3100996E88 /* CalculatorView+Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6579B2606CA3100996E88 /* CalculatorView+Metrics.swift */; };
+		B4F6579C2606CA3100996E88 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F6579B2606CA3100996E88 /* Configuration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B42D06CE260576E100EF4F42 /* CalculatorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButton.swift; sourceTree = "<group>"; };
 		B42D06D1260576FF00EF4F42 /* CalculatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewModel.swift; sourceTree = "<group>"; };
-		B42D06D52605783700EF4F42 /* CalculatorButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonView.swift; sourceTree = "<group>"; };
+		B42D06D52605783700EF4F42 /* CalculatorButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonStyle.swift; sourceTree = "<group>"; };
 		B4899B6E26054057003B7851 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4899B7126054057003B7851 /* CalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorApp.swift; sourceTree = "<group>"; };
 		B4899B7326054057003B7851 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
@@ -31,7 +31,7 @@
 		B4899B7A26054058003B7851 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4F5970F2607AAE4004D67F8 /* UIWindow+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Key.swift"; sourceTree = "<group>"; };
 		B4F597122607AB18004D67F8 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
-		B4F6579B2606CA3100996E88 /* CalculatorView+Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CalculatorView+Metrics.swift"; sourceTree = "<group>"; };
+		B4F6579B2606CA3100996E88 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B45EF05126093012002FB31C /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				B42D06D52605783700EF4F42 /* CalculatorButtonStyle.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
 		B4899B6526054057003B7851 = {
 			isa = PBXGroup;
 			children = (
@@ -67,6 +75,7 @@
 				B4899B7126054057003B7851 /* CalculatorApp.swift */,
 				B4F5971A2607AD5A004D67F8 /* Extensions */,
 				B4F597172607AD33004D67F8 /* Models */,
+				B45EF05126093012002FB31C /* Styles */,
 				B4F597162607AD1C004D67F8 /* Views */,
 				B4899B7526054058003B7851 /* Assets.xcassets */,
 				B4899B7A26054058003B7851 /* Info.plist */,
@@ -87,8 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				B4899B7326054057003B7851 /* CalculatorView.swift */,
-				B4F6579B2606CA3100996E88 /* CalculatorView+Metrics.swift */,
-				B42D06D52605783700EF4F42 /* CalculatorButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -96,9 +103,10 @@
 		B4F597172607AD33004D67F8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B4F597122607AB18004D67F8 /* Buttons.swift */,
 				B42D06CE260576E100EF4F42 /* CalculatorButton.swift */,
 				B42D06D1260576FF00EF4F42 /* CalculatorViewModel.swift */,
-				B4F597122607AB18004D67F8 /* Buttons.swift */,
+				B4F6579B2606CA3100996E88 /* Configuration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -182,9 +190,9 @@
 			files = (
 				B42D06D2260576FF00EF4F42 /* CalculatorViewModel.swift in Sources */,
 				B4899B7426054057003B7851 /* CalculatorView.swift in Sources */,
-				B42D06D62605783700EF4F42 /* CalculatorButtonView.swift in Sources */,
+				B42D06D62605783700EF4F42 /* CalculatorButtonStyle.swift in Sources */,
 				B42D06CF260576E100EF4F42 /* CalculatorButton.swift in Sources */,
-				B4F6579C2606CA3100996E88 /* CalculatorView+Metrics.swift in Sources */,
+				B4F6579C2606CA3100996E88 /* Configuration.swift in Sources */,
 				B4F597102607AAE4004D67F8 /* UIWindow+Key.swift in Sources */,
 				B4899B7226054057003B7851 /* CalculatorApp.swift in Sources */,
 				B4F597132607AB18004D67F8 /* Buttons.swift in Sources */,
