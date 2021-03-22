@@ -46,9 +46,11 @@ extension CalculatorView {
 
     var buttonMetrics: ButtonMetrics {
         if UIWindow.keyWindowScene?.interfaceOrientation.isLandscape == true {
-            return ButtonMetrics(buttons: env.isDefaultDisplay ? Buttons.landscape : Buttons.landscapeWithClear)
+//            return ButtonMetrics(buttons: env.isDefaultDisplay ? Buttons.landscape : Buttons.landscapeWithClear)
+            return ButtonMetrics(buttons: Buttons.landscape)
         } else {
-            return ButtonMetrics(buttons: env.isDefaultDisplay ? Buttons.default : Buttons.defaultWithClear)
+//            return ButtonMetrics(buttons: env.isDefaultDisplay ? Buttons.default : Buttons.defaultWithClear)
+            return ButtonMetrics(buttons: Buttons.default)
         }
     }
 }

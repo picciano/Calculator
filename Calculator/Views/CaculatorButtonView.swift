@@ -19,7 +19,7 @@ struct CalculatorButtonView: View {
         Button(action: {
             env.process(button)
         }, label: {
-            Text(button.title)
+            Text(env.isDefaultDisplay ? button.altTitle : button.title)
                 .font(.system(size: fontSize))
                 .frame(width: width,
                        height: height)
