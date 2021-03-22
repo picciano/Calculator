@@ -1,5 +1,5 @@
 //
-//  CalculatorView+ButtonMetrics.swift
+//  CalculatorView+Metrics.swift
 //  Calculator
 //
 //  Created by Anthony Picciano on 3/20/21.
@@ -9,21 +9,37 @@ import SwiftUI
 
 extension CalculatorView {
 
-    struct ButtonMetrics {
+    struct Metrics {
 
         static let defaultRadius: CGFloat = 60
+        static let defaultDisplayTextFontSize: CGFloat = 64
 
         let buttons: Buttons
         var buttonRadius: CGFloat = defaultRadius
+        var displayTextFontSize: CGFloat = defaultDisplayTextFontSize
 
         init(buttons: Buttons) {
             self.buttons = buttons
-            self.buttonRadius = calculateButtonRadius()
+
+            displayTextFontSize = calculateDisplayTextFontSize()
+            buttonRadius = calculateButtonRadius()
+        }
+
+        private func calculateDisplayTextFontSize() -> CGFloat {
+            guard let keyWindow = UIWindow.keyWindow else {
+                return Metrics.defaultDisplayTextFontSize
+            }
+
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                return Metrics.defaultDisplayTextFontSize
+            }
+
+            return keyWindow.bounds.width / 10
         }
 
         private func calculateButtonRadius() -> CGFloat {
             guard let keyWindow = UIWindow.keyWindow else {
-                return ButtonMetrics.defaultRadius
+                return Metrics.defaultRadius
             }
 
             // Determine maximum radius based on available width
@@ -34,7 +50,7 @@ extension CalculatorView {
             // Determine maximum radius based on available height
             let columnCount = CGFloat(buttons.count)
             let verticalSpacerCount = CGFloat(columnCount + 1)
-            let spaceForDisplayText: CGFloat = 120
+            let spaceForDisplayText = displayTextFontSize + 56
             let radiusBasedOnHeight = (keyWindow.bounds.height - spaceForDisplayText - verticalSpacerCount * CalculatorView.Properties.spacing) / columnCount
 
             // Select the smaller of the two
@@ -43,11 +59,11 @@ extension CalculatorView {
         }
     }
 
-    var buttonMetrics: ButtonMetrics {
+    var metrics: Metrics {
         if env.interfaceOrientation.isLandscape == true {
-            return ButtonMetrics(buttons: Buttons.landscape)
+            return Metrics(buttons: Buttons.landscape)
         } else {
-            return ButtonMetrics(buttons: Buttons.default)
+            return Metrics(buttons: Buttons.default)
         }
     }
 }

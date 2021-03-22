@@ -22,7 +22,7 @@ struct CalculatorView: View {
 
             Color(UIColor.tertiarySystemBackground).ignoresSafeArea(.all)
 
-            let metrics = buttonMetrics
+            let currentMetrics = metrics
 
             VStack(alignment: env.interfaceOrientation.isLandscape ? .trailing : .center, spacing: CalculatorView.Properties.spacing) {
 
@@ -30,13 +30,14 @@ struct CalculatorView: View {
                     Spacer()
                     Text(env.displayText)
                         .foregroundColor(Color(UIColor.label))
-                        .font(.system(size: 64))
+                        .font(.system(size: currentMetrics.displayTextFontSize))
+                        .multilineTextAlignment(.trailing)
                 }
 
-                ForEach(metrics.buttons, id: \.self) { row in
+                ForEach(currentMetrics.buttons, id: \.self) { row in
                     HStack(spacing: CalculatorView.Properties.spacing) {
                         ForEach(row, id: \.self) { button in
-                            CalculatorButtonView(button: button, buttonRadius: metrics.buttonRadius)
+                            CalculatorButtonView(button: button, buttonRadius: currentMetrics.buttonRadius)
                         }
                     }
                 }

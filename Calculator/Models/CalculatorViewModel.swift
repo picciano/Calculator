@@ -20,13 +20,13 @@ class CalculatorViewModel: ObservableObject {
         UIWindow.keyWindowInterfaceOrientation ?? .unknown
     }
     
-    private var currentValue: Float {
-        get { resultNumberFormatter.number(from: displayText)?.floatValue ?? 0 }
+    private var currentValue: Double {
+        get { resultNumberFormatter.number(from: displayText)?.doubleValue ?? 0 }
         set { displayText = resultNumberFormatter.string(from: NSNumber(value: newValue)) ?? "E" }
     }
     
-    private var register: Float? = nil
-    private var memoryRegister: Float? = nil
+    private var register: Double? = nil
+    private var memoryRegister: Double? = nil
     private var startNewEntry = true
     private var enteredDigits = false
     private var currentOperation: CalculatorButton? { didSet { startNewEntry = true } }
@@ -35,7 +35,7 @@ class CalculatorViewModel: ObservableObject {
     private var resultNumberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumSignificantDigits = 8
+        formatter.maximumSignificantDigits = 15
         return formatter
     }()
     

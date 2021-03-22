@@ -77,7 +77,7 @@ enum CalculatorButton {
         }
     }
 
-    func calculate(firstNumber: Float, secondNumber: Float? = nil) -> Float {
+    func calculate(firstNumber: Double, secondNumber: Double? = nil) -> Double {
         switch self {
         case .add:
             return firstNumber + (secondNumber ?? 0)
