@@ -18,7 +18,7 @@ struct Configuration {
     var displayTextFontSize: CGFloat = defaultDisplayTextFontSize
 
     init(with interfaceOrientation: UIInterfaceOrientation) {
-        self.buttons = interfaceOrientation.isLandscape ? Buttons.landscape : Buttons.default
+        buttons = interfaceOrientation.isLandscape ? Buttons.landscape : Buttons.default
         horizontalAlignment = interfaceOrientation.isLandscape ? .trailing : .center
 
         displayTextFontSize = calculateDisplayTextFontSize()
