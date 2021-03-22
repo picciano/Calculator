@@ -10,7 +10,6 @@ import SwiftUI
 enum CalculatorButton {
     case zero, one, two, three, four, five, six, seven, eight, nine, decimal
     case add, subtract, multiply, divide, equals
-//    case allClear, clear, plusMinus, percent
     case clear, plusMinus, percent
     case memoryRecall, memoryClear, memoryAdd, memorySubtract
     
@@ -32,7 +31,6 @@ enum CalculatorButton {
         case .multiply: return "✕"
         case .divide: return "÷"
         case .equals: return "="
-//        case .allClear: return "AC"
         case .clear: return "C"
         case .plusMinus: return "+/–"
         case .percent: return "%"
@@ -75,7 +73,6 @@ enum CalculatorButton {
         switch self {
         case .add, .subtract, .multiply, .divide, .equals:
             return .accentColor
-//        case .allClear, .clear, .plusMinus, .percent:
         case .clear, .plusMinus, .percent:
             return Color(.lightGray)
         default:
@@ -85,7 +82,6 @@ enum CalculatorButton {
     
     var foregroundColor: Color {
         switch self {
-//        case .allClear, .clear, .plusMinus, .percent:
         case .clear, .plusMinus, .percent:
             return .black
         default:

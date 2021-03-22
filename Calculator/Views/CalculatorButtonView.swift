@@ -10,7 +10,7 @@ import SwiftUI
 struct CalculatorButtonView: View {
 
     @EnvironmentObject
-    var env: CalculatorEnvironment
+    var env: CalculatorViewModel
 
     var button: CalculatorButton
     var buttonRadius: CGFloat

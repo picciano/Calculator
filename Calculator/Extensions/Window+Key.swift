@@ -10,7 +10,8 @@ import SwiftUI
 extension UIWindow {
 
     static var keyWindow: UIWindow? {
-        UIApplication.shared.connectedScenes
+        UIApplication.shared
+            .connectedScenes
             .filter({ $0.activationState == .foregroundActive })
             .map({ $0 as? UIWindowScene })
             .compactMap({ $0 })

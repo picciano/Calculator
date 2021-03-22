@@ -1,5 +1,5 @@
 //
-//  GlobalEnvironment.swift
+//  CalculatorViewModel.swift
 //  Calculator
 //
 //  Created by Anthony Picciano on 3/19/21.
@@ -8,13 +8,17 @@
 import SwiftUI
 import Combine
 
-class CalculatorEnvironment: ObservableObject {
+class CalculatorViewModel: ObservableObject {
     
     @Published
     var displayText: String
     
     @Published
-    var displayUpdate: Bool = true
+    var deviceOrientation: UIDeviceOrientation = UIDevice.current.orientation
+
+    var interfaceOrientation: UIInterfaceOrientation {
+        UIWindow.keyWindowInterfaceOrientation ?? .unknown
+    }
     
     private var currentValue: Float {
         get { resultNumberFormatter.number(from: displayText)?.floatValue ?? 0 }
@@ -38,10 +42,16 @@ class CalculatorEnvironment: ObservableObject {
     
     init() {
         displayText = defaultDisplay
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         rotationTask = NotificationCenter.default
             .publisher(for: UIDevice.orientationDidChangeNotification)
             .sink(receiveValue: { (notification) in
-                self.displayUpdate.toggle()
+                guard let device = notification.object as? UIDevice,
+                      device.orientation != .unknown,
+                      device.orientation != self.deviceOrientation else {
+                    return
+                }
+                self.deviceOrientation = device.orientation
             })
     }
     
@@ -57,10 +67,6 @@ class CalculatorEnvironment: ObservableObject {
             if !displayText.contains(CalculatorButton.decimal.title) {
                 displayText.append(button.title)
             }
-        //        case .allClear:
-        //            displayText = defaultDisplay
-        //            register = 0
-        //            currentOperation = nil
         case .clear:
             if isDefaultDisplay {
                 register = 0

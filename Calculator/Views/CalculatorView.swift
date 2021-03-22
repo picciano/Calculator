@@ -14,7 +14,7 @@ struct CalculatorView: View {
     }
 
     @EnvironmentObject
-    var env: CalculatorEnvironment
+    var env: CalculatorViewModel
 
     var body: some View {
 
@@ -24,7 +24,7 @@ struct CalculatorView: View {
 
             let metrics = buttonMetrics
 
-            VStack(alignment: buttonMetrics.isLandscape ? .trailing : .center, spacing: CalculatorView.Properties.spacing) {
+            VStack(alignment: env.interfaceOrientation.isLandscape ? .trailing : .center, spacing: CalculatorView.Properties.spacing) {
 
                 HStack {
                     Spacer()
@@ -50,7 +50,7 @@ struct ContentView_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            CalculatorView().environmentObject(CalculatorEnvironment())
+            CalculatorView().environmentObject(CalculatorViewModel())
         }
     }
 }

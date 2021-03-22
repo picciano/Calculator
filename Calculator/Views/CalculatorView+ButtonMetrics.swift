@@ -14,7 +14,6 @@ extension CalculatorView {
         static let defaultRadius: CGFloat = 60
 
         let buttons: Buttons
-        let isLandscape = UIWindow.keyWindowScene?.interfaceOrientation.isLandscape == true
         var buttonRadius: CGFloat = defaultRadius
 
         init(buttons: Buttons) {
@@ -45,11 +44,9 @@ extension CalculatorView {
     }
 
     var buttonMetrics: ButtonMetrics {
-        if UIWindow.keyWindowScene?.interfaceOrientation.isLandscape == true {
-//            return ButtonMetrics(buttons: env.isDefaultDisplay ? Buttons.landscape : Buttons.landscapeWithClear)
+        if env.interfaceOrientation.isLandscape == true {
             return ButtonMetrics(buttons: Buttons.landscape)
         } else {
-//            return ButtonMetrics(buttons: env.isDefaultDisplay ? Buttons.default : Buttons.defaultWithClear)
             return ButtonMetrics(buttons: Buttons.default)
         }
     }
