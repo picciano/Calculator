@@ -12,6 +12,33 @@ enum CalculatorButton {
     case add, subtract, multiply, divide, equals
     case clear, plusMinus, percent
     case memoryRecall, memoryClear, memoryAdd, memorySubtract
+
+    var isNumeric: Bool {
+        switch self {
+        case .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine:
+            return true
+        default:
+            return false
+        }
+    }
+
+    var isOneParamterFunction: Bool {
+        switch self {
+        case .plusMinus, .percent:
+            return true
+        default:
+            return false
+        }
+    }
+
+    var isTwoParamterFunction: Bool {
+        switch self {
+        case .add, .subtract, .multiply, .divide:
+            return true
+        default:
+            return false
+        }
+    }
     
     var title: String {
         switch self {
@@ -73,7 +100,7 @@ enum CalculatorButton {
         switch self {
         case .add, .subtract, .multiply, .divide, .equals:
             return .accentColor
-        case .clear, .plusMinus, .percent:
+        case .clear, .plusMinus, .percent, .memoryAdd, .memoryClear, .memorySubtract, .memoryRecall:
             return Color(.lightGray)
         default:
             return Color(.darkGray)

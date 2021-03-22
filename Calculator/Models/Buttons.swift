@@ -20,9 +20,9 @@ extension Buttons {
     ]
 
     static let landscape: Buttons = [
-        [ .seven, .eight, .nine, .divide, .clear ],
-        [ .four, .five, .six, .multiply, .plusMinus ],
-        [ .one, .two, .three, .subtract, .percent ],
-        [ .zero, .decimal, .add, .equals ]
+        [ .memoryRecall, .seven, .eight, .nine, .divide, .clear ],
+        [ .memoryClear, .four, .five, .six, .multiply, .plusMinus ],
+        [ .memoryAdd, .one, .two, .three, .subtract, .percent ],
+        [ .memorySubtract, .zero, .decimal, .add, .equals ]
     ]
 }

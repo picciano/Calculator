@@ -26,6 +26,7 @@ class CalculatorViewModel: ObservableObject {
     }
     
     private var register: Float? = nil
+    private var memoryRegister: Float? = nil
     private var startNewEntry = true
     private var enteredDigits = false
     private var currentOperation: CalculatorButton? { didSet { startNewEntry = true } }
@@ -63,10 +64,6 @@ class CalculatorViewModel: ObservableObject {
         var currentlyEnteringDigits = false
         
         switch button {
-        case .decimal:
-            if !displayText.contains(CalculatorButton.decimal.title) {
-                displayText.append(button.title)
-            }
         case .clear:
             if isDefaultDisplay {
                 register = 0
@@ -74,11 +71,11 @@ class CalculatorViewModel: ObservableObject {
             }
             displayText = defaultDisplay
             startNewEntry = true
-        case .plusMinus, .percent:
+        case _ where button.isOneParamterFunction:
             let result = button.calculate(firstNumber: currentValue)
             register = result
             currentValue = result
-        case .add, .subtract, .multiply, .divide:
+        case _ where button.isTwoParamterFunction:
             if let currentOperation = currentOperation, let currentRegister = register, enteredDigits {
                 let result = currentOperation.calculate(firstNumber: currentRegister, secondNumber: currentValue)
                 register = result
@@ -99,15 +96,29 @@ class CalculatorViewModel: ObservableObject {
             currentValue = operation.calculate(firstNumber: currentRegister, secondNumber: currentValue)
             lastOperation = operation
             currentOperation = nil
-        default:
+        case _ where button.isNumeric:
             if startNewEntry || isDefaultDisplay {
                 displayText = button.title
                 startNewEntry = false
             } else {
                 displayText.append(button.title)
             }
-            
+
             currentlyEnteringDigits = true
+        case .decimal:
+            if !displayText.contains(CalculatorButton.decimal.title) {
+                displayText.append(button.title)
+            }
+        case .memoryRecall:
+            break
+        case .memoryClear:
+            break
+        case .memoryAdd:
+            break
+        case .memorySubtract:
+            break
+        default:
+            break
         }
         
         enteredDigits = currentlyEnteringDigits
