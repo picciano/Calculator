@@ -73,10 +73,6 @@ struct CalculatorView: View {
             .padding()
         }
     }
-
-    func calculateRadius(using metrics: GeometryProxy) -> CGFloat {
-        return 100
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {

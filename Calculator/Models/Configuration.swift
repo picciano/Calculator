@@ -25,8 +25,6 @@ struct Configuration {
     }
 
     func buttonRadius(using metrics: GeometryProxy) -> CGFloat {
-        print(metrics.size)
-
         // Determine maximum radius based on available width
         let rowCount = CGFloat(buttons.first?.count ?? 0)
         let horizantalSpacerCount = CGFloat(rowCount + 1)
