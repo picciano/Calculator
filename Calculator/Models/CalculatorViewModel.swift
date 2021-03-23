@@ -13,13 +13,6 @@ class CalculatorViewModel: ObservableObject {
     @Published
     var displayText: String
     
-    @Published
-    var deviceOrientation: UIDeviceOrientation = UIDevice.current.orientation
-
-    func createConfiguration() -> Configuration {
-        Configuration(with: UIWindow.keyWindowInterfaceOrientation ?? .unknown)
-    }
-    
     private var currentValue: Double {
         get { resultNumberFormatter.number(from: displayText)?.doubleValue ?? 0 }
         set { displayText = resultNumberFormatter.string(from: NSNumber(value: newValue)) ?? "E" }
@@ -43,17 +36,6 @@ class CalculatorViewModel: ObservableObject {
     
     init() {
         displayText = defaultDisplay
-        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
-        rotationTask = NotificationCenter.default
-            .publisher(for: UIDevice.orientationDidChangeNotification)
-            .sink(receiveValue: { (notification) in
-                guard let device = notification.object as? UIDevice,
-                      device.orientation != .unknown,
-                      device.orientation != self.deviceOrientation else {
-                    return
-                }
-                self.deviceOrientation = device.orientation
-            })
     }
     
     var isDefaultDisplay: Bool {

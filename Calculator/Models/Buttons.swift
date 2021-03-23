@@ -11,7 +11,7 @@ typealias Buttons = [[CalculatorButton]]
 
 extension Buttons {
 
-    static let `default`: Buttons = [
+    static let compact: Buttons = [
         [ .clear, .plusMinus, .percent, .divide ],
         [ .seven, .eight, .nine, .multiply ],
         [ .four, .five, .six, .subtract ],
@@ -19,10 +19,10 @@ extension Buttons {
         [ .zero, .decimal, .equals ],
     ]
 
-    static let landscape: Buttons = [
-        [ .memoryRecall, .seven, .eight, .nine, .divide, .clear ],
-        [ .memoryClear, .four, .five, .six, .multiply, .plusMinus ],
-        [ .memoryAdd, .one, .two, .three, .subtract, .percent ],
-        [ .memorySubtract, .zero, .decimal, .add, .equals ]
+    static let regular: Buttons = [
+        [ .memoryClear, .seven, .eight, .nine, .divide, .clear ],
+        [ .memoryAdd, .four, .five, .six, .multiply, .plusMinus ],
+        [ .memorySubtract, .one, .two, .three, .subtract, .percent ],
+        [ .memoryRecall, .zero, .decimal, .add, .equals ]
     ]
 }

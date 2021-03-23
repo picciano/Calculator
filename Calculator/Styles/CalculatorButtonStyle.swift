@@ -15,8 +15,7 @@ struct CalculatorButtonStyle: ButtonStyle {
     public func makeBody(configuration: CalculatorButtonStyle.Configuration) -> some View {
         configuration.label
             .font(.system(size: fontSize))
-            .frame(width: width,
-                   height: height)
+            .frame(maxWidth: width, maxHeight: height)
             .foregroundColor(button.foregroundColor)
             .background(configuration.isPressed ? button.backgroundColor.lighter() : button.backgroundColor)
             .cornerRadius(cornerRadius)

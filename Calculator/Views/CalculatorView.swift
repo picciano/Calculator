@@ -16,43 +16,66 @@ struct CalculatorView: View {
     @EnvironmentObject
     var model: CalculatorViewModel
 
+    @Environment(\.horizontalSizeClass)
+    var horizontalSizeClass
+
+    @Environment(\.verticalSizeClass)
+    var verticalSizeClass
+
     var body: some View {
 
         ZStack(alignment: .bottom) {
 
             Color(UIColor.tertiarySystemBackground).ignoresSafeArea(.all)
 
-            let config = model.createConfiguration()
+            let config = Configuration(with: horizontalSizeClass ?? .regular,
+                                       verticalSizeClass ?? .regular)
 
-            VStack(alignment: config.horizontalAlignment, spacing: CalculatorView.Properties.spacing) {
+            VStack(alignment: horizontalSizeClass == .regular ? .trailing : .center,
+                   spacing: CalculatorView.Properties.spacing) {
+
+                Spacer()
 
                 HStack {
                     Spacer()
                     Text(model.displayText)
                         .foregroundColor(Color(UIColor.label))
-                        .font(.system(size: config.displayTextFontSize))
+                        .font(.system(size: config.displayFontSize))
                         .multilineTextAlignment(.trailing)
                 }
 
-                ForEach(config.buttons, id: \.self) { row in
-                    HStack(spacing: CalculatorView.Properties.spacing) {
-                        ForEach(row, id: \.self) { button in
-                            Button {
-                                model.process(button)
-                            } label: {
-                                if let systemImageName = button.systemImageName {
-                                    Image(systemName: systemImageName)
-                                } else {
-                                    Text(model.isDefaultDisplay ? button.altTitle : button.title)
+                GeometryReader { (metrics) in
+                    let buttonRadius = config.buttonRadius(using: metrics)
+                    VStack(alignment: metrics.size.width > metrics.size.height ? .trailing : .center,
+                           spacing: CalculatorView.Properties.spacing) {
+
+                        Color(UIColor.tertiarySystemBackground).ignoresSafeArea(.all)
+
+                        ForEach(config.buttons, id: \.self) { row in
+                            HStack(spacing: CalculatorView.Properties.spacing) {
+                                ForEach(row, id: \.self) { button in
+                                    Button {
+                                        model.process(button)
+                                    } label: {
+                                        if let systemImageName = button.systemImageName {
+                                            Image(systemName: systemImageName)
+                                        } else {
+                                            Text(model.isDefaultDisplay ? button.altTitle : button.title)
+                                        }
+                                    }
+                                    .buttonStyle(CalculatorButtonStyle(button: button, buttonRadius: buttonRadius))
                                 }
                             }
-                            .buttonStyle(CalculatorButtonStyle(button: button, buttonRadius: config.buttonRadius))
                         }
                     }
                 }
             }
             .padding()
         }
+    }
+
+    func calculateRadius(using metrics: GeometryProxy) -> CGFloat {
+        return 100
     }
 }
 
