@@ -39,6 +39,36 @@ enum CalculatorButton {
             return false
         }
     }
+
+    var isBasicFunction: Bool {
+        switch self {
+        case .add, .subtract, .multiply, .divide, .equals:
+            return true
+        default:
+            return false
+        }
+    }
+
+    var systemImageName: String? {
+        switch self {
+        case .add:
+            return "plus"
+        case .subtract:
+            return "minus"
+        case .multiply:
+            return "multiply"
+        case .divide:
+            return "divide"
+        case .equals:
+            return "equal"
+        case .plusMinus:
+            return "plus.slash.minus"
+        case .percent:
+            return "percent"
+        default:
+            return nil
+        }
+    }
     
     var title: String {
         switch self {
@@ -53,18 +83,12 @@ enum CalculatorButton {
         case .eight: return "8"
         case .nine: return "9"
         case .decimal: return "."
-        case .add: return "+"
-        case .subtract: return "–"
-        case .multiply: return "✕"
-        case .divide: return "÷"
-        case .equals: return "="
         case .clear: return "C"
-        case .plusMinus: return "+/–"
-        case .percent: return "%"
         case .memoryRecall: return "MR"
         case .memoryClear: return "MC"
         case .memoryAdd: return "M+"
         case .memorySubtract: return "M–"
+        default: return ""
         }
     }
 
@@ -98,8 +122,8 @@ enum CalculatorButton {
     
     var backgroundColor: Color {
         switch self {
-        case .add, .subtract, .multiply, .divide, .equals:
-            return .accentColor
+        case _ where isBasicFunction:
+            return Color("AccentColor")
         case .clear, .plusMinus, .percent, .memoryAdd, .memoryClear, .memorySubtract, .memoryRecall:
             return Color(.lightGray)
         default:

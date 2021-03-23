@@ -37,9 +37,16 @@ struct CalculatorView: View {
                 ForEach(config.buttons, id: \.self) { row in
                     HStack(spacing: CalculatorView.Properties.spacing) {
                         ForEach(row, id: \.self) { button in
-                            Button(model.isDefaultDisplay ? button.altTitle : button.title) {
+                            Button {
                                 model.process(button)
-                            }.buttonStyle(CalculatorButtonStyle(button: button, buttonRadius: config.buttonRadius))
+                            } label: {
+                                if let systemImageName = button.systemImageName {
+                                    Image(systemName: systemImageName)
+                                } else {
+                                    Text(model.isDefaultDisplay ? button.altTitle : button.title)
+                                }
+                            }
+                            .buttonStyle(CalculatorButtonStyle(button: button, buttonRadius: config.buttonRadius))
                         }
                     }
                 }

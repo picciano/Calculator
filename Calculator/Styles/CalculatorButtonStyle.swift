@@ -18,7 +18,7 @@ struct CalculatorButtonStyle: ButtonStyle {
             .frame(width: width,
                    height: height)
             .foregroundColor(button.foregroundColor)
-            .background(button.backgroundColor)
+            .background(configuration.isPressed ? button.backgroundColor.lighter() : button.backgroundColor)
             .cornerRadius(cornerRadius)
     }
 
@@ -40,11 +40,6 @@ struct CalculatorButtonStyle: ButtonStyle {
     }
 
     var fontSize: CGFloat {
-        switch button {
-        case .add, .subtract, .divide, .equals:
-            return buttonRadius / 2
-        default:
-            return buttonRadius / 3
-        }
+        buttonRadius / 3
     }
 }
