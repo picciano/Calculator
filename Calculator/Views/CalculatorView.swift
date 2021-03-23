@@ -34,9 +34,13 @@ struct CalculatorView: View {
             VStack(alignment: horizontalSizeClass == .regular ? .trailing : .center,
                    spacing: CalculatorView.Properties.spacing) {
 
-                Spacer()
-
-                HStack {
+                HStack(alignment: .top) {
+                    if model.memory.hasValue {
+                        Text("M")
+                            .foregroundColor(.accentColor)
+                            .font(.system(size: 18, weight: .black))
+                            .multilineTextAlignment(.leading)
+                    }
                     Spacer()
                     Text(model.displayText)
                         .foregroundColor(Color(UIColor.label))

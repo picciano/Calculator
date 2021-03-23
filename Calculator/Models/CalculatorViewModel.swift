@@ -9,17 +9,19 @@ import SwiftUI
 import Combine
 
 class CalculatorViewModel: ObservableObject {
-    
+
     @Published
     var displayText: String
+
+    @Published
+    var memory = MemoryModel()
     
     private var currentValue: Double {
         get { resultNumberFormatter.number(from: displayText)?.doubleValue ?? 0 }
         set { displayText = resultNumberFormatter.string(from: NSNumber(value: newValue)) ?? "E" }
     }
-    
+
     private var register: Double? = nil
-    private var memoryRegister: Double? = nil
     private var startNewEntry = true
     private var enteredDigits = false
     private var currentOperation: CalculatorButton? { didSet { startNewEntry = true } }
@@ -92,13 +94,18 @@ class CalculatorViewModel: ObservableObject {
                 displayText.append(button.title)
             }
         case .memoryRecall:
-            break
+            if memory.hasValue, let value = memory.value {
+                currentValue = value
+                startNewEntry = true
+            }
         case .memoryClear:
-            break
+            memory.clear()
         case .memoryAdd:
-            break
+            memory.add(value: currentValue)
+            startNewEntry = true
         case .memorySubtract:
-            break
+            memory.subtract(value: currentValue)
+            startNewEntry = true
         default:
             break
         }
